@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Spine Calculator</title>
+  </head>
+  <body>
+
+    <div class="container-md">
+
+
+      <nav class="navbar navbar-light">
+        <a class="navbar-brand" href="#">
+          <div>
+            <img src="img/icons8-archer-100.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            Spine Calculator
+          </div> 
+          <small class="text-muted">Bow and arrow spine comparison tool</small>
+        </a>
+      </nav>
+
+      <div class="accordion" id="inputSections">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <img src="img/icons8-archers-bow-100.png" width="20" height="20" class="d-inline-block align-top" alt="">
+                Bow spine
+              </button>
+            </h2>
+          </div>
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#inputSections">
+            <div class="card-body">
+
+              <!-- BOW SPINE INPUT -->
+
+              <!-- NOMINAL STRENGTH -->
+              <div class="form-group row">
+                <label for="nominalStrength" class="col-6 col-form-label">Nominal strength [#]:</label>
+                <div class="col-6">
+                  <input class="form-control" type="number" id="nominalStrength" value=35 required>
+                </div>
+              </div>
+
+              <!-- DRAW LENGTH -->
+              <div class="form-group row">
+                <label for="drawLength" class="col-6 col-form-label">Draw length [inch]:</label>
+                <div class="col-6">
+                  <input class="form-control" type="number" id="drawLength" value=28 required>
+                </div>
+              </div>
+
+              <!-- BOW TYPE -->
+              <div class="form-group row">
+                <label for="bowType" class="col-6 col-form-label">Bow type:</label>
+                <div class="col-6">
+                  <select class="form-control btn btn-secondary dropdown-toggle" type="button" id="bowType" required data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Bow type
+                    <option class="dropdown-item" value="longbow" selected>Longbow</option>
+                    <option class="dropdown-item" value="recurve">Recurve</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- LIMBS -->
+              <div class="form-group row">
+                <label for="limbs" class="col-6 col-form-label">Limbs:</label>
+                <div class="col-6">
+                  <select class="form-control btn btn-secondary dropdown-toggle" type="button" id="limbs" required data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Limbs
+                    <option class="dropdown-item" value="wood" selected>Wood</option>
+                    <option class="dropdown-item" value="recurve">Carbon</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- BOW QUALITY -->
+              <div class="form-group row">
+                <label for="bowQuality" class="col-6 col-form-label">Bow quality:</label>
+                <div class="col-6">
+                  <select class="form-control btn btn-secondary dropdown-toggle" type="button" id="bowQuality" required data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Bow quality
+                    <option class="dropdown-item" value="normal" selected>Normal</option>
+                    <option class="dropdown-item" value="highend">High-end</option>
+                  </select>
+                </div>
+              </div>   
+
+              <!-- STRING -->
+              <div class="form-group row">
+                <label for="string" class="col-6 col-form-label">String type:</label>
+                <div class="col-6">
+                  <select class="form-control btn btn-secondary dropdown-toggle" type="button" id="string" required data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    String
+                    <option class="dropdown-item" value="dacron" selected>Dacron</option>
+                    <option class="dropdown-item" value="fastflight">Fast Flight</option>
+                  </select>
+                </div>
+              </div>       
+
+              <!-- SILENCER -->
+              <div class="form-group row">
+                <label class="col-6 col-form-label">String silencer:</label>
+                <div class="col-6">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="withSilencer" class="custom-control-input">
+                    <label class="custom-control-label" for="withSilencer">Yes</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="withoutSilencer" class="custom-control-input" checked>
+                    <label class="custom-control-label" for="withoutSilencer">No</label>
+                  </div>
+                </div>
+              </div>       
+
+              <!-- ARCHER LEVEL -->
+              <div class="form-group row">
+                <label for="archerLevel" class="col-6 col-form-label">Archer level:</label>
+                <div class="col-6">
+                  <select class="form-control btn btn-secondary dropdown-toggle" type="button" id="archerLevel" required data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Archer level
+                    <option class="dropdown-item" value="longbow" selected>Beginner</option>
+                    <option class="dropdown-item" value="recurve">Expert</option>
+                  </select>
+                </div>
+              </div>   
+
+            </div>
+
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+              <button class="btn btn-light collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <img src="img/icons8-archers-arrow-100.png" width="20" height="20" class="d-inline-block align-top" alt="">
+                Arrow spine
+              </button>
+            </h2>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#inputSections">
+            <div class="card-body">
+              
+              <!-- ARROW SPINE INPUT -->
+
+              <!-- ARROW LENGTH -->
+              <div class="form-group row">
+                <label for="arrowLength" class="col-6 col-form-label">Arrow length [inch]:</label>
+                <div class="col-6">
+                  <input class="form-control" type="number" id="arrowLength" value=28 required>
+                </div>
+              </div>
+
+              <!-- TIP WEIGHT -->
+              <div class="form-group row">
+                <label for="tipWeight" class="col-6 col-form-label">Tip weight [grains]:</label>
+                <div class="col-6">
+                  <input class="form-control" type="number" id="tipWeight" value=100 required>
+                </div>
+              </div>
+
+              <!-- BASIC SPINE -->
+              <div class="form-group row">
+                <label for="basicSpine" class="col-6 col-form-label">Spine value:</label>
+                <div class="col-6">
+                  <div class="input-group">
+                    <input class="form-control" type="number" id="basicSpine">
+                    <div class="input-group-append">
+                      <select class="form-control btn btn-outline-secondary dropdown-toggle" type="button" id="basicSpineUnit" required data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <option class="dropdown-item" value="default" selected>sp.</option>
+                        <option class="dropdown-item" value="pounds">#</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+          <h4 class="card-header">Result</h4>
+        <div class="card-body row">
+          <div class="col-12 col-sm-6">
+            <canvas id="result-gauge"></canvas>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="form-group row">
+              <label class="col-9 col-form-label" for="result-bow-spine">Arrow spine for bow:</label>
+              <input class="col-3 form-control-plaintext" id="result-bow-spine" value=35 readonly>
+            </div>
+            <div class="form-group row">
+              <label class="col-9 col-form-label" for="result-arrow-spine">Selected arrows:</label>
+              <input class="col-3 form-control-plaintext" id="result-arrow-spine" value=35 readonly>
+            </div>
+            <div class="form-group row">
+              <label class="col-9 col-form-label" for="result-recommended-spine">Recommended spine:</label>
+              <input class="col-3 form-control-plaintext" id="result-recommended-spine" value="800 (35#)" readonly>
+            </div>
+          </div>
+        </div>
+      </div>  
+
+
+      <footer class="footer text-right">
+        <div>Copyright © 2020 Matthias Volnhals</div>
+        <small>
+          <a  class="text-muted" target="_blank" href="https://icons8.com/icons/set/archer">Archer</a>, <a target="_blank" href="https://icons8.com/icons/set/archers-arrow">Archers Arrow</a> and other icons by <a target="_blank" href="https://icons8.com">Icons8</a> 
+      </small>
+      </footer>
+
+
+    </div>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.5.0.js"></script>
+    <script src="script/gauge.min.js"></script>
+    <script src="script/spinecalculator.js"></script>
+
+  </body>
+</html>
