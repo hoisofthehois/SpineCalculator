@@ -1,30 +1,5 @@
 
 
-var resultOptions = {
-  angle: 0, // The span of the gauge arc
-  lineWidth: 0.4, // The line thickness
-  radiusScale: 1, // Relative radius
-  pointer: {
-    length: 0.50, // // Relative to gauge radius
-    strokeWidth: 0.050, // The thickness
-    color: '#000000' // Fill color
-  },
-  limitMax: true,     // If false, max value increases automatically if value > maxValue
-  limitMin: true,     // If true, the min value of the gauge will be fixed
-  colorStart: '#6FADCF',   // Colors
-  colorStop: '#8FC0DA',    // just experiment with them
-  strokeColor: '#E0E0E0',  // to see which ones work best for you
-  generateGradient: true,
-  highDpiSupport: true,     // High resolution support
-  staticZones: [
-   {strokeStyle: "#F03E3E", min: 15, max: 25}, // Red from 100 to 130
-   {strokeStyle: "#FFDD00", min: 25, max: 30}, // Yellow
-   {strokeStyle: "#30B32D", min: 30, max: 35}, // Green
-   {strokeStyle: "#FFDD00", min: 35, max: 40}, // Yellow
-   {strokeStyle: "#F03E3E", min: 40, max: 60}  // Red
-	],
-};
-
 function spineToPounds(value) {
   return +26000.0 / ( value * 0.825 );
 }
@@ -67,8 +42,9 @@ function spineForArcher(level) {
   }
 }
 
-function SpineViewModel() {
+function SpineViewModel(target) {
   var self = this;
+
   self.nominalStrength = ko.observable(35);
   self.drawLength = ko.observable(28);
   self.bowType = ko.observable('modernLongbow');
@@ -105,6 +81,17 @@ function SpineViewModel() {
 	  return spine;
 	});
 
+  self.spineZones = ko.pureComputed(function() {
+    let spine = self.dynamicSpine();
+    return [
+        {strokeStyle: "#F03E3E", min: 15, max: spine - 8}, // Red
+        {strokeStyle: "#FFDD00", min: spine - 8, max: spine - 4}, // Yellow
+        {strokeStyle: "#30B32D", min: spine - 4, max: spine + 2}, // Green
+        {strokeStyle: "#FFDD00", min: spine + 2, max: spine + 4}, // Yellow
+        {strokeStyle: "#F03E3E", min: spine + 4, max: 60}  // Red
+	    ];
+	});
+
   self.resultDynamicSpine = ko.pureComputed(function() {
     return poundsToSpine(self.dynamicSpine()) + ' (' + Math.round(self.dynamicSpine()) + '#)';
 	});
@@ -132,20 +119,51 @@ function SpineViewModel() {
     }
     pounds = 5 * Math.floor(pounds / 5.0);
     return +spine + ' (' + +pounds + '#)';
-
 	});
+
+  self.gaugeOptions = {
+    angle: 0, // The span of the gauge arc
+    lineWidth: 0.4, // The line thickness
+    radiusScale: 1, // Relative radius
+    pointer: {
+      length: 0.50, // // Relative to gauge radius
+      strokeWidth: 0.050, // The thickness
+      color: '#000000' // Fill color
+    },
+    limitMax: true,     // If false, max value increases automatically if value > maxValue
+    limitMin: true,     // If true, the min value of the gauge will be fixed
+    colorStart: '#6FADCF',   // Colors
+    colorStop: '#8FC0DA',    // just experiment with them
+    strokeColor: '#E0E0E0',  // to see which ones work best for you
+    highDpiSupport: true,     // High resolution support
+    fontSize: 0,
+    staticZones: self.spineZones()
+  };
+
+  self.spineGauge = new Gauge(target).setOptions(self.gaugeOptions);
+  self.spineGauge.animationSpeed = 20; // set animation speed (32 is default value)
+	self.spineGauge.maxValue = 60; // set max gauge value
+	self.spineGauge.minValue = 15;
+
+  self.arrowSpine.subscribe(function(spine) {
+    self.spineGauge.set(spine);
+	});
+
+  self.spineZones.subscribe(function(zones) {
+    self.gaugeOptions.staticZones = zones;
+    self.spineGauge.setOptions(self.gaugeOptions);
+	});
+
 }
 
 
 
 function startup() {
 	let target = document.getElementById('result-gauge'); 
-	var gauge = new Gauge(target).setOptions(resultOptions);
-	gauge.animationSpeed = 20; // set animation speed (32 is default value)
-	gauge.maxValue = 60; // set max gauge value
-	gauge.minValue = 15;
-	gauge.set(35); // set actual value
-  ko.applyBindings(new SpineViewModel());
+  var model = new SpineViewModel(target);
+  ko.applyBindings(model);
+  model.arrowSpine.notifySubscribers('change');
+  model.dynamicSpine.notifySubscribers('change');
 }
 
 
