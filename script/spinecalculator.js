@@ -26,7 +26,11 @@ var resultOptions = {
 };
 
 function spineToPounds(value) {
-  return 26000.0 / ( value * 0.825 );
+  return +26000.0 / ( value * 0.825 );
+}
+
+function poundsToSpine(value) {
+  return +Math.round(spineToPounds(value));
 }
 
 function spineForBowType(bowType) {
@@ -79,7 +83,7 @@ function SpineViewModel() {
   self.staticSpineUnit = ko.observable('pounds');
 
   self.arrowSpine = ko.pureComputed(function() {
-    let spine = self.staticSpine();
+    let spine = +self.staticSpine();
     if (self.staticSpineUnit() === 'default') {
       spine = spineToPounds(spine);
     }
@@ -89,8 +93,8 @@ function SpineViewModel() {
   });
 
   self.dynamicSpine = ko.pureComputed(function() {
-    let spine = self.nominalStrength();
-	  spine += ( self.nominalStrength() / 20.0 ) * ( self.drawLength() - 28.0 );
+    let spine = +self.nominalStrength();
+	  spine += ( +self.nominalStrength() / 20.0 ) * ( +self.drawLength() - 28.0 );
 	  spine += spineForBowType(self.bowType());
 	  spine += self.limbs() === 'wood' ? 0.0 : 3.0;
 	  spine += self.bowQuality() === 'highend' ? 1.0 : 0.0;
@@ -98,7 +102,37 @@ function SpineViewModel() {
 	  spine += self.string() === 'fastflight' ? 5.0 : 0.0;
 	  spine -= self.silencer() === 'yes' ? 1.0 : 0.0;
 	  spine += spineForArcher(self.archerLevel());
-	  return +spine;
+	  return spine;
+	});
+
+  self.resultDynamicSpine = ko.pureComputed(function() {
+    return poundsToSpine(self.dynamicSpine()) + ' (' + Math.round(self.dynamicSpine()) + '#)';
+	});
+
+  self.resultArrowSpine = ko.pureComputed(function() {
+    return poundsToSpine(self.arrowSpine()) + ' (' + Math.round(self.arrowSpine()) + '#)';
+	});
+
+  self.recommendedSpine = ko.pureComputed(function() {
+    let spine = +self.dynamicSpine();
+    spine += ( +self.arrowLength() - 28.0 ) * 3.0;
+    spine += 4.0 * ( ( +self.tipWeight() - 125.0 ) / 25.0 );
+    return spine;
+	});
+
+  self.resultRecommendedSpine = ko.pureComputed(function() {
+    let pounds = +self.recommendedSpine();
+    let spine = poundsToSpine(pounds);
+    if (spine % 100 <= 20) {
+      spine -= 20;
+		}
+    spine = 100 * Math.ceil(spine / 100.0);
+    if (pounds % 5 >= 4) {
+      pounds += 1;
+    }
+    pounds = 5 * Math.floor(pounds / 5.0);
+    return +spine + ' (' + +pounds + '#)';
+
 	});
 }
 
