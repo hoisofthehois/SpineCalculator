@@ -1,2 +1,9 @@
 # SpineCalculator
-Arrow spine calculator for archery using the methods described by D. Vorderegger
+
+This project is an arrow spine calculator for archery using the methods described by D. Vorderegger.
+
+It is the *worst* project I've ever worked on. Although is consists of only one HTML page and one JavaScript file, the code is a mess due to my limited experience with these web technologies. Everything is hard-coded; the formatting is weird, and the JavaScript is mostly guesswork. A kind of framework, [Knockout.js](https://knockoutjs.com/), is applied, but it is abused as a mere GUI update tool (for instance, the [Gauge.js](https://bernii.github.io/gauge.js/) element is updated from `ko.computed` callbacks). The layout looks awkward on *both* desktop and mobile devices, and for CSS styling nothing beyond the mere basics is done.
+
+While this project is clearly not intended to demonstrate or even advertise my abilities, it does serve the purpose it has been created for. It is an easily accessible tool for archers that seek to find the correct static spine value for their arrows, so that their bow and arrows match. Only a well-matched equipment results in a correct arrow flight and a satisfying archery experience. Finding the appropriate arrows for a bow is a crucial task that every archer should come across, and this tools makes it easy to find arrows that - at least - serve as a good starting point for further experiments on the shooting range.
+
+The calculations that is tool conducts in order to find the dynamic spine value of the archer's setup is taken from [Das große Pfeilebuch](https://www.bogensportwelt.de/Das-grosse-Pfeilebuch-fuer-traditionelles-Bogenschiessen-Book-Dietmar-Vorderegger) by Dietmar Vorderegger. Although that book contains all the information needed to calculate the correct arrow spine values for a given equipment, its style and structure is so convoluted and confuse that it takes a technically adept physicist (like me) to extract that information and condense it into a simple calculation took.
