@@ -1,4 +1,12 @@
 
+// activate popover tooltips
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+
+$('.popover-dismiss').popover({
+  trigger: 'focus'
+})
 
 function spineToPounds(value) {
   return +26000.0 / ( value * 0.825 );

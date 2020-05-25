@@ -42,24 +42,30 @@
 
               <!-- NOMINAL STRENGTH -->
               <div class="form-group row">
-                <label for="nominalStrength" class="col-6 col-form-label">Nominal strength [#]:</label>
-                <div class="col-6">
+                <label for="nominalStrength" class="col-5 col-form-label">Nominal strength [#]:</label>
+                <div class="col-7 input-group">
                   <input class="form-control" type="number" id="nominalStrength" data-bind="value: nominalStrength" required>
+                  <div class="input-group-append">
+                    <a type="button" class="btn btn-outline-dark" data-toggle="popover" tabindex="0" data-trigger="focus" title="Nominal strength" data-content="The nominal strength of your bow, measured in pounds, at 28 inches draw length; this value is usually specified on the lower limb.">?</a>
+                  </div>
                 </div>
               </div>
 
               <!-- DRAW LENGTH -->
               <div class="form-group row">
-                <label for="drawLength" class="col-6 col-form-label">Draw length [inch]:</label>
-                <div class="col-6">
+                <label for="drawLength" class="col-5 col-form-label">Draw length [inch]:</label>
+                <div class="col-7 input-group">
                   <input class="form-control" type="number" id="drawLength" data-bind="value: drawLength" required>
+                  <div class="input-group-append">
+                    <a type="button" class="btn btn-outline-dark" data-toggle="popover" tabindex="0" data-trigger="focus" title="Draw length" data-content="The archer's full draw length, i.e. the distance from the nocking point on the string to the front side of the grip. This value is measured in inches.">?</a>
+                  </div>
                 </div>
               </div>
 
               <!-- BOW TYPE -->
               <div class="form-group row">
-                <label for="bowType" class="col-6 col-form-label">Bow type:</label>
-                <div class="col-6">
+                <label for="bowType" class="col-5 col-form-label">Bow type:</label>
+                <div class="col-7 input-group">
                   <select class="form-control btn btn-secondary dropdown-toggle" type="button" id="bowType" data-bind="value: bowType" required data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Bow type
                     <option class="dropdown-item" value="selfbow">Selfbow</option>
@@ -69,38 +75,60 @@
                     <option class="dropdown-item" value="huntRecurve">Hunting Recurve</option>
                     <option class="dropdown-item" value="technical">Technical/Olympic Bow</option>
                   </select>
+                  <div class="input-group-append">
+                    <a type="button" class="btn btn-outline-dark" data-toggle="popover" tabindex="0" data-trigger="focus" title="Bow type" data-html="true" 
+                    data-content="
+                      <div>
+                      Different bow types are able to exert different amount of force on the arrows, resulting in different dynamic spine values.
+                        <ul>
+                        <li><b>Selfbow</b>: A piece of wood with a string.</li>
+                        <li><b>Traditional Longbow</b>: A longbow built from traditional materials, without technical frills.</li>
+                        <li><b>Modern Longbow</b>: A longbow made of modern materials and refined quality.</li>
+                        <li><b>Traditional Recurve</b>: A wooden, one-piece or take-down, recurve bow.</li>
+                        <li><b>Hunting recurce</b>: A recurve bow with hunting capability, often with metal handle.</li>
+                        <li><b>Technical/Olympic Bow</b>: A modern bow with stablilization and sight.</li>
+                        </ul>
+                      </div>
+                    ">?</a>
+                  </div>
                 </div>
               </div>
 
               <!-- LIMBS -->
               <div class="form-group row">
-                <label for="limbs" class="col-6 col-form-label">Limbs:</label>
-                <div class="col-6">
+                <label for="limbs" class="col-5 col-form-label">Limbs:</label>
+                <div class="col-7 input-group">
                   <select class="form-control btn btn-secondary dropdown-toggle" type="button" id="limbs" data-bind="value: limbs" required data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Limbs
                     <option class="dropdown-item" value="wood" selected>Pure Wood</option>
                     <option class="dropdown-item" value="glass">Glass Layer</option>
                     <option class="dropdown-item" value="carbon">Carbon Layer</option>
                   </select>
+                  <div class="input-group-append">
+                    <a type="button" class="btn btn-outline-dark" data-toggle="popover" tabindex="0" data-trigger="focus" title="Limbs" data-content="Select whether the bow limbs are pure wood or coated with a layer of carbon or glass, which results in a higher force on the arrows.">?</a>
+                  </div>
                 </div>
               </div>
 
               <!-- BOW QUALITY -->
               <div class="form-group row">
-                <label for="bowQuality" class="col-6 col-form-label">Bow quality:</label>
-                <div class="col-6">
+                <label for="bowQuality" class="col-5 col-form-label">Bow quality:</label>
+                <div class="col-7 input-group">
                   <select class="form-control btn btn-secondary dropdown-toggle" type="button" id="bowQuality" data-bind="value: bowQuality" required data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Bow quality
                     <option class="dropdown-item" value="normal" selected>Normal</option>
                     <option class="dropdown-item" value="highend">High End</option>
                   </select>
+                  <div class="input-group-append">
+                    <a type="button" class="btn btn-outline-dark" data-toggle="popover" tabindex="0" data-trigger="focus" title="Bow quality" data-content="High quality bows are able to exert a higher force than standard ones. Highend bows are either made by experience bow makers or by reputated companies and are usually found in the high price range (above 300€)">?</a>
+                  </div>
                 </div>
               </div>   
 
               <!-- STRING -->
               <div class="form-group row">
-                <label for="string" class="col-6 col-form-label">String type:</label>
-                <div class="col-6">
+                <label for="string" class="col-5 col-form-label">String type:</label>
+                <div class="col-7">
                   <select class="form-control btn btn-secondary dropdown-toggle" type="button" id="string" data-bind="value: string" required data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     String
                     <option class="dropdown-item" value="dacron" selected>Dacron</option>
@@ -111,8 +139,8 @@
 
               <!-- SILENCER -->
               <div class="form-group row">
-                <label class="col-6 col-form-label">String silencer:</label>
-                <div class="col-6">
+                <label class="col-5 col-form-label">String silencer:</label>
+                <div class="col-7">
                   <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="withSilencer" value="yes" data-bind="checked: silencer" class="custom-control-input">
                     <label class="custom-control-label" for="withSilencer">Yes</label>
@@ -126,8 +154,8 @@
 
               <!-- ARCHER LEVEL -->
               <div class="form-group row">
-                <label for="archerLevel" class="col-6 col-form-label">Archer level:</label>
-                <div class="col-6">
+                <label for="archerLevel" class="col-5 col-form-label">Archer level:</label>
+                <div class="col-7 input-group">
                   <select class="form-control btn btn-secondary dropdown-toggle" type="button" id="archerLevel" data-bind="value: archerLevel" required data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Archer level
                     <option class="dropdown-item" value="beginner">Beginner</option>
@@ -136,6 +164,21 @@
                     <option class="dropdown-item" value="competitive">Competitive</option>
                     <option class="dropdown-item" value="professional">Professional</option>
                   </select>
+                  <div class="input-group-append">
+                    <a type="button" class="btn btn-outline-dark" data-toggle="popover" tabindex="0" data-trigger="focus" title="Archer level" data-html="true" 
+                    data-content="
+                      <div>
+                      The archer's level plays an important role in spine selection, as more experienced archers can bear stiffer arrows due to their accurate shooting technique.
+                        <ul>
+                        <li><b>Beginner</b>: An archer that has just started with this kind of sports.</li>
+                        <li><b>Hobby</b>: An archer that shoots for recreation purpose and attends no regular training sessions.</li>
+                        <li><b>Trained</b>: An archer that shoot regularly (several times a month) or even participates in an archery club's training.</li>
+                        <li><b>Competitive</b>: A trained archer that also takes part in competitions and tournaments.</li>
+                        <li><b>Professional</b>: Successful athlete that is able to generate some income with archery, either as a trainer or by actually winning contests.</li>
+                        </ul>
+                      </div>
+                    ">?</a>
+                  </div>
                 </div>
               </div>   
 
@@ -159,24 +202,27 @@
 
               <!-- ARROW LENGTH -->
               <div class="form-group row">
-                <label for="arrowLength" class="col-6 col-form-label">Arrow length [inch]:</label>
-                <div class="col-6">
+                <label for="arrowLength" class="col-5 col-form-label">Arrow length [inch]:</label>
+                <div class="col-7">
                   <input class="form-control" type="number" id="arrowLength" data-bind="value: arrowLength" required>
                 </div>
               </div>
 
               <!-- TIP WEIGHT -->
               <div class="form-group row">
-                <label for="tipWeight" class="col-6 col-form-label">Tip weight [grains]:</label>
-                <div class="col-6">
+                <label for="tipWeight" class="col-5 col-form-label">Tip weight [grains]:</label>
+                <div class="col-7 input-group">
                   <input class="form-control" type="number" id="tipWeight" data-bind="value: tipWeight" required>
+                  <div class="input-group-append">
+                    <a type="button" class="btn btn-outline-dark" data-toggle="popover" tabindex="0" data-trigger="focus" title="Tip weight" data-content="The weight of the arrow tip, without insert or glue, measured in grains.">?</a>
+                  </div>
                 </div>
               </div>
 
               <!-- STATIC SPINE -->
               <div class="form-group row">
-                <label for="staticSpine" class="col-6 col-form-label">Static spine:</label>
-                <div class="col-6">
+                <label for="staticSpine" class="col-5 col-form-label">Static spine:</label>
+                <div class="col-7">
                   <div class="input-group">
                     <input class="form-control" type="number" id="staticSpine" data-bind="value: staticSpine" required>
                     <div class="input-group-append">
@@ -184,6 +230,9 @@
                         <option class="dropdown-item" value="default" selected>sp.</option>
                         <option class="dropdown-item" value="pounds">#</option>
                       </select>
+                    </div>
+                    <div class="input-group-append">
+                      <a type="button" class="btn btn-outline-dark" data-toggle="popover" tabindex="0" data-trigger="focus" data-html="true" title="Static spine" data-content="Spine value of the arrow shaft. For wooden arrows, this value is specified in pounds, whereas for carbon and aluminium arrows the actual bending is stated. The static spine of the arrow shaft is <b>not</b> the same value as the dynamic spine calculated by this tool. A naive approach with static arrow spines corresponding to the nominal strength of the bow will in almost all cases result in an inferior performance of the equipment.">?</a>
                     </div>
                   </div>
                 </div>
@@ -213,6 +262,9 @@
               <label class="col-9 col-form-label" for="resultRecommendedSpine">Recommended spine:</label>
               <input class="col-3 form-control-plaintext" id="resultRecommendedSpine" data-bind="value: resultRecommendedSpine" readonly>
             </div>
+          </div>
+          <div class="col-12">
+            <small>Dynamic spine values of the bow and of the selected arrows should match. A small deviation in the range of a few pounds from the optimal value, depending of personal preferences, will normally not affect the arrow flight. In doubt, slightly weak arrows should be chosen, i.e. with a higher spine value or fewer pounds. Experieced archers can tolerate stiffer arrows, however.</small>
           </div>
         </div>
       </div>  
