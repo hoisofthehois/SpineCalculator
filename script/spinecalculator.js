@@ -122,49 +122,45 @@ function SpineViewModel(target) {
 	});
 
   self.gaugeOptions = {
-    angle: 0, // The span of the gauge arc
-    lineWidth: 0.4, // The line thickness
-    radiusScale: 1, // Relative radius
+    angle: 0, 
+    lineWidth: 0.4, 
+    radiusScale: 1, 
     pointer: {
-      length: 0.50, // // Relative to gauge radius
-      strokeWidth: 0.050, // The thickness
-      color: '#000000' // Fill color
+      length: 0.50, 
+      strokeWidth: 0.050, 
+      color: '#000000' 
     },
-    limitMax: true,     // If false, max value increases automatically if value > maxValue
-    limitMin: true,     // If true, the min value of the gauge will be fixed
-    colorStart: '#6FADCF',   // Colors
-    colorStop: '#8FC0DA',    // just experiment with them
-    strokeColor: '#E0E0E0',  // to see which ones work best for you
-    highDpiSupport: true,     // High resolution support
+    limitMax: true, 
+    limitMin: true, 
+    colorStart: '#6FADCF',  
+    colorStop: '#8FC0DA',   
+    strokeColor: '#E0E0E0', 
+    highDpiSupport: true,   
     fontSize: 0,
     staticZones: self.spineZones()
   };
 
   self.spineGauge = new Gauge(target).setOptions(self.gaugeOptions);
-  self.spineGauge.animationSpeed = 20; // set animation speed (32 is default value)
-	self.spineGauge.maxValue = 60; // set max gauge value
+  self.spineGauge.animationSpeed = 20;
+	self.spineGauge.maxValue = 60;
 	self.spineGauge.minValue = 15;
 
-  self.arrowSpine.subscribe(function(spine) {
+  self.arrowSpineSetter = ko.computed( function() {
+    let spine = self.arrowSpine();
     self.spineGauge.set(spine);
 	});
 
-  self.spineZones.subscribe(function(zones) {
+  self.spineZonesSetter = ko.computed(function() {
+    let zones = self.spineZones();
     self.gaugeOptions.staticZones = zones;
     self.spineGauge.setOptions(self.gaugeOptions);
 	});
-
 }
-
-
 
 function startup() {
 	let target = document.getElementById('result-gauge'); 
   var model = new SpineViewModel(target);
   ko.applyBindings(model);
-  model.arrowSpine.notifySubscribers('change');
-  model.dynamicSpine.notifySubscribers('change');
 }
-
 
 startup();
